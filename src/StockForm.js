@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import YearlyHistoricalPerformance from "./YearlyHistoricalPerformance";
 import "./App.css";
 import { LineChart, Line, Label, XAxis, YAxis, Tooltip } from "recharts";
 import moment from "moment";
@@ -30,9 +31,9 @@ const StockForm = () => {
   };
 
   const handleHP = () => {
-    let performanceData = stockStats.map((instance, i) => (
-      <li key={stockStats[i].date}>
-        Date: {stockStats[i].date} Close: {stockStats[i].close}
+    let performanceData = stockStats.map((instance) => (
+      <li key={instance.date}>
+        Date: {instance.date} Close: {instance.close}
       </li>
     ));
     setPerformanceData(performanceData);
@@ -69,12 +70,13 @@ const StockForm = () => {
       </LineChart>
       <br />
       <br />
-      <ul>
-        {isSubmitted && (
-          <button onClick={handleHP}>Historical Performance</button>
-        )}
-        {performanceData}
-      </ul>
+      {/* <ul> */}
+      {isSubmitted && (
+        // <button onClick={handleHP}>Historical Performance</button>
+        <YearlyHistoricalPerformance stock={stock} stockStats={stockStats} />
+      )}
+      {/* {performanceData} */}
+      {/* </ul> */}
     </div>
   );
 };
